@@ -1,0 +1,45 @@
+export default function TimerDisplay({
+  sessionType,
+  timeLeft,
+  completedSessions,
+}) {
+  // Format seconds into MM:SS
+  const formatTime = (seconds) => {
+    const m = String(Math.floor(seconds / 60)).padStart(2, "0");
+    const s = String(seconds % 60).padStart(2, "0");
+    return `${m}:${s}`;
+  };
+
+  // Capitalize session label
+  const getSessionLabel = (type) => {
+    switch (type) {
+      case "work":
+        return "Work Session";
+      case "shortBreak":
+        return "Short Break";
+      case "longBreak":
+        return "Long Break";
+      default:
+        return "Timer";
+    }
+  };
+
+  return (
+    <div className="text-center space-y-2">
+      <h2 className="text-lg font-medium text-gray-600" aria-live="polite">
+        {getSessionLabel(sessionType)}
+      </h2>
+
+      <div
+        className="text-6xl font-timer font-bold"
+        aria-label={`Time left: ${formatTime(timeLeft)}`}
+      >
+        {formatTime(timeLeft)}
+      </div>
+
+      <p className="text-sm text-gray-500">
+        Completed Pomodoros: <strong>{completedSessions}</strong>
+      </p>
+    </div>
+  );
+}
