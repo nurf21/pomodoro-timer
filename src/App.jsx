@@ -34,26 +34,28 @@ function App() {
         ⚙️ Settings
       </button>
 
-      <SettingsModal
-        isOpen={showSettings}
-        onClose={() => setShowSettings(false)}
-        currentConfig={config}
-        onSave={(newConfig) => setConfig(newConfig)}
-      />
+      <main role="main">
+        <SettingsModal
+          isOpen={showSettings}
+          onClose={() => setShowSettings(false)}
+          currentConfig={config}
+          onSave={(newConfig) => setConfig(newConfig)}
+        />
 
-      <TimerDisplay sessionType={sessionType} timeLeft={timeLeft} />
+        <TimerDisplay sessionType={sessionType} timeLeft={timeLeft} />
 
-      <SessionTracker
-        completedSessions={completedSessions}
-        sessionsBeforeLongBreak={config.sessionsBeforeLongBreak}
-      />
+        <Controls
+          isRunning={isRunning}
+          onStart={start}
+          onPause={pause}
+          onReset={reset}
+        />
 
-      <Controls
-        isRunning={isRunning}
-        onStart={start}
-        onPause={pause}
-        onReset={reset}
-      />
+        <SessionTracker
+          completedSessions={completedSessions}
+          sessionsBeforeLongBreak={config.sessionsBeforeLongBreak}
+        />
+      </main>
     </div>
   );
 }

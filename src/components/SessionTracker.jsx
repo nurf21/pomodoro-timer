@@ -22,9 +22,25 @@ export default function SessionTracker({
       <p className="text-sm text-gray-600">Pomodoro Progress</p>
       <div
         className="flex justify-center items-center mt-1"
-        aria-label="Pomodoro cycle progress"
+        role="list"
+        aria-label={`Completed work sessions: ${
+          completedSessions % sessionsBeforeLongBreak
+        } of ${sessionsBeforeLongBreak}`}
       >
-        {dots}
+        {dots.map((dot, index) => (
+          <span
+            key={index}
+            role="listitem"
+            aria-label={
+              index < completedSessions % sessionsBeforeLongBreak
+                ? "Completed session"
+                : "Incomplete session"
+            }
+            className="w-4 h-4 rounded-full mx-1"
+          >
+            {dot}
+          </span>
+        ))}
       </div>
       <p className="text-xs text-gray-500 mt-1">
         {completedSessions % sessionsBeforeLongBreak}/{sessionsBeforeLongBreak}{" "}

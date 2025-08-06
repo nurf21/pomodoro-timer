@@ -32,8 +32,11 @@ export default function SettingsModal({
         <h2 className="text-xl font-semibold mb-4">Settings</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block font-medium">Work Duration (minutes)</label>
+            <label htmlFor="workDuration" className="block font-medium">
+              Work Duration (minutes)
+            </label>
             <input
+              id="workDuration"
               type="number"
               min="1"
               value={work}
@@ -44,10 +47,11 @@ export default function SettingsModal({
           </div>
 
           <div>
-            <label className="block font-medium">
+            <label htmlFor="shortBreakDuration" className="block font-medium">
               Short Break Duration (minutes)
             </label>
             <input
+              id="shortBreakDuration"
               type="number"
               min="1"
               value={shortBreak}
@@ -58,10 +62,11 @@ export default function SettingsModal({
           </div>
 
           <div>
-            <label className="block font-medium">
+            <label htmlFor="longBreakDuration" className="block font-medium">
               Long Break Duration (minutes)
             </label>
             <input
+              id="longBreakDuration"
               type="number"
               min="1"
               value={longBreak}
@@ -72,10 +77,11 @@ export default function SettingsModal({
           </div>
 
           <div>
-            <label className="block font-medium">
+            <label htmlFor="sessions" className="block font-medium">
               Sessions Before Long Break
             </label>
             <input
+              id="sessions"
               type="number"
               min="1"
               value={sessionsBeforeLongBreak}

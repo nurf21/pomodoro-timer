@@ -29,6 +29,8 @@ export default function TimerDisplay({ sessionType, timeLeft }) {
       <div
         className="text-6xl font-timer font-bold"
         aria-label={`Time left: ${formatTime(timeLeft)}`}
+        role="timer"
+        aria-live="polite"
       >
         {formatTime(timeLeft)}
       </div>
