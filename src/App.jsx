@@ -1,3 +1,4 @@
+import Controls from "./components/Controls";
 import TimerDisplay from "./components/TimerDisplay";
 import { usePomodoroTimer } from "./hooks/usePomodoroTimer";
 
@@ -20,20 +21,12 @@ function App() {
         completedSessions={completedSessions}
       />
 
-      <div className="mt-6 space-x-4">
-        {isRunning ? (
-          <button onClick={pause} className="btn">
-            Pause
-          </button>
-        ) : (
-          <button onClick={start} className="btn">
-            Start
-          </button>
-        )}
-        <button onClick={reset} className="btn">
-          Reset
-        </button>
-      </div>
+      <Controls
+        isRunning={isRunning}
+        onStart={start}
+        onPause={pause}
+        onReset={reset}
+      />
     </div>
   );
 }
