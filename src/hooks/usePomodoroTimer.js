@@ -1,13 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-export function usePomodoroTimer(
-  config = {
-    work: 25 * 60,
-    shortBreak: 5 * 60,
-    longBreak: 15 * 60,
-    sessionsBeforeLongBreak: 4,
-  }
-) {
+export function usePomodoroTimer(config) {
   const [timeLeft, setTimeLeft] = useState(config.work);
   const [isRunning, setIsRunning] = useState(false);
   const [sessionType, setSessionType] = useState("work"); // 'work' | 'shortBreak' | 'longBreak'
@@ -15,19 +8,8 @@ export function usePomodoroTimer(
 
   const intervalRef = useRef(null);
 
-  // Start timer
-  const start = () => {
-    if (!isRunning) {
-      setIsRunning(true);
-    }
-  };
-
-  // Pause timer
-  const pause = () => {
-    setIsRunning(false);
-  };
-
-  // Reset timer to current session default
+  const start = () => setIsRunning(true);
+  const pause = () => setIsRunning(false);
   const reset = () => {
     pause();
     if (sessionType === "work") setTimeLeft(config.work);
@@ -35,11 +17,11 @@ export function usePomodoroTimer(
     if (sessionType === "longBreak") setTimeLeft(config.longBreak);
   };
 
-  // Switch sessions automatically
   const switchSession = () => {
     if (sessionType === "work") {
       const newSessions = completedSessions + 1;
       setCompletedSessions(newSessions);
+
       if (newSessions % config.sessionsBeforeLongBreak === 0) {
         setSessionType("longBreak");
         setTimeLeft(config.longBreak);
@@ -53,7 +35,6 @@ export function usePomodoroTimer(
     }
   };
 
-  // Timer effect
   useEffect(() => {
     if (isRunning && timeLeft > 0) {
       intervalRef.current = setInterval(() => {
@@ -61,11 +42,16 @@ export function usePomodoroTimer(
       }, 1000);
     } else if (timeLeft === 0) {
       switchSession();
-      setIsRunning(false); // Stop until user restarts
+      setIsRunning(false);
     }
 
     return () => clearInterval(intervalRef.current);
   }, [isRunning, timeLeft]);
+
+  // 🔁 Watch for config changes and reset
+  useEffect(() => {
+    reset();
+  }, [config]);
 
   return {
     timeLeft,
