@@ -1,8 +1,4 @@
-export default function TimerDisplay({
-  sessionType,
-  timeLeft,
-  completedSessions,
-}) {
+export default function TimerDisplay({ sessionType, timeLeft }) {
   // Format seconds into MM:SS
   const formatTime = (seconds) => {
     const m = String(Math.floor(seconds / 60)).padStart(2, "0");
@@ -36,10 +32,6 @@ export default function TimerDisplay({
       >
         {formatTime(timeLeft)}
       </div>
-
-      <p className="text-sm text-gray-500">
-        Completed Pomodoros: <strong>{completedSessions}</strong>
-      </p>
     </div>
   );
 }

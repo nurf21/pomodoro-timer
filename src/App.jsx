@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { usePomodoroTimer } from "./hooks/usePomodoroTimer";
 import Controls from "./components/Controls";
+import SessionTracker from "./components/SessionTracker";
 import SettingsModal from "./components/SettingsModal";
 import TimerDisplay from "./components/TimerDisplay";
 
@@ -40,10 +41,11 @@ function App() {
         onSave={(newConfig) => setConfig(newConfig)}
       />
 
-      <TimerDisplay
-        sessionType={sessionType}
-        timeLeft={timeLeft}
+      <TimerDisplay sessionType={sessionType} timeLeft={timeLeft} />
+
+      <SessionTracker
         completedSessions={completedSessions}
+        sessionsBeforeLongBreak={config.sessionsBeforeLongBreak}
       />
 
       <Controls
