@@ -37,7 +37,10 @@ function App() {
   const [showSettings, setShowSettings] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6">
+    <main
+      role="main"
+      className="min-h-screen flex flex-col items-center justify-center px-4 py-8 sm:px-6 lg:px-8"
+    >
       <audio
         ref={audioRef}
         src="pomodoro-timer/notification.mp3"
@@ -51,29 +54,27 @@ function App() {
         ⚙️ Settings
       </button>
 
-      <main role="main">
-        <SettingsModal
-          isOpen={showSettings}
-          onClose={() => setShowSettings(false)}
-          currentConfig={config}
-          onSave={(newConfig) => setConfig(newConfig)}
-        />
+      <SettingsModal
+        isOpen={showSettings}
+        onClose={() => setShowSettings(false)}
+        currentConfig={config}
+        onSave={(newConfig) => setConfig(newConfig)}
+      />
 
-        <TimerDisplay sessionType={sessionType} timeLeft={timeLeft} />
+      <TimerDisplay sessionType={sessionType} timeLeft={timeLeft} />
 
-        <Controls
-          isRunning={isRunning}
-          onStart={start}
-          onPause={pause}
-          onReset={reset}
-        />
+      <Controls
+        isRunning={isRunning}
+        onStart={start}
+        onPause={pause}
+        onReset={reset}
+      />
 
-        <SessionTracker
-          completedSessions={completedSessions}
-          sessionsBeforeLongBreak={config.sessionsBeforeLongBreak}
-        />
-      </main>
-    </div>
+      <SessionTracker
+        completedSessions={completedSessions}
+        sessionsBeforeLongBreak={config.sessionsBeforeLongBreak}
+      />
+    </main>
   );
 }
 

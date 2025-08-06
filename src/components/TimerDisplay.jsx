@@ -27,7 +27,7 @@ export default function TimerDisplay({ sessionType, timeLeft }) {
       </h2>
 
       <div
-        className="text-6xl font-timer font-bold"
+        className="font-timer font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
         aria-label={`Time left: ${formatTime(timeLeft)}`}
         role="timer"
         aria-live="polite"

@@ -28,7 +28,7 @@ export default function SettingsModal({
 
   return (
     <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
-      <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-xl">
+      <div className="bg-white rounded-xl p-6 w-full max-w-md mx-4 sm:mx-0 shadow-xl">
         <h2 className="text-xl font-semibold mb-4">Settings</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
