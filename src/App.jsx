@@ -26,7 +26,6 @@ function App() {
   } = usePomodoroTimer(config);
 
   useEffect(() => {
-    console.log("Time left:", timeLeft);
     if (timeLeft === 0 && audioRef.current) {
       audioRef.current.play().catch((err) => {
         console.warn("Audio play failed:", err);
