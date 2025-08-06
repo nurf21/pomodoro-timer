@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { usePomodoroTimer } from "./hooks/usePomodoroTimer";
 import Controls from "./components/Controls";
 import SessionTracker from "./components/SessionTracker";
@@ -13,6 +13,8 @@ function App() {
     sessionsBeforeLongBreak: 4,
   });
 
+  const audioRef = useRef(null);
+
   const {
     sessionType,
     timeLeft,
@@ -23,10 +25,25 @@ function App() {
     reset,
   } = usePomodoroTimer(config);
 
+  useEffect(() => {
+    console.log("Time left:", timeLeft);
+    if (timeLeft === 0 && audioRef.current) {
+      audioRef.current.play().catch((err) => {
+        console.warn("Audio play failed:", err);
+      });
+    }
+  }, [timeLeft]);
+
   const [showSettings, setShowSettings] = useState(false);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6">
+      <audio
+        ref={audioRef}
+        src="pomodoro-timer/notification.mp3"
+        preload="auto"
+      />
+
       <button
         onClick={() => setShowSettings(true)}
         className="absolute top-4 right-4 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
