@@ -23,6 +23,7 @@ function App() {
     start,
     pause,
     reset,
+    skipSession,
   } = usePomodoroTimer(config);
 
   useEffect(() => {
@@ -71,6 +72,7 @@ function App() {
         onStart={start}
         onPause={pause}
         onReset={reset}
+        onSkip={skipSession}
       />
 
       <SessionTracker

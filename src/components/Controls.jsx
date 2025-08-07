@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
 
-export default function Controls({ isRunning, onStart, onPause, onReset }) {
+export default function Controls({
+  isRunning,
+  onStart,
+  onPause,
+  onReset,
+  onSkip,
+}) {
   return (
     <motion.div
       className="flex flex-col sm:flex-row gap-4 justify-center mt-6 w-full max-w-sm"
@@ -29,6 +35,12 @@ export default function Controls({ isRunning, onStart, onPause, onReset }) {
         className="flex-1 py-3 px-4 rounded-xl bg-gray-400 text-white text-base font-semibold shadow hover:bg-gray-500 transition"
       >
         Reset
+      </button>
+      <button
+        onClick={onSkip}
+        className="flex-1 py-3 px-4 rounded-xl bg-blue-400 text-white text-base font-semibold shadow hover:bg-blue-500 transition"
+      >
+        Skip
       </button>
     </motion.div>
   );

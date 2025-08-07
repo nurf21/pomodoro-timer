@@ -35,6 +35,11 @@ export function usePomodoroTimer(config) {
     }
   };
 
+  const skipSession = () => {
+    switchSession();
+    setIsRunning(false);
+  };
+
   useEffect(() => {
     if (isRunning && timeLeft > 0) {
       intervalRef.current = setInterval(() => {
@@ -61,5 +66,6 @@ export function usePomodoroTimer(config) {
     start,
     pause,
     reset,
+    skipSession,
   };
 }
