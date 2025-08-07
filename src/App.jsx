@@ -60,7 +60,11 @@ function App() {
         onSave={(newConfig) => setConfig(newConfig)}
       />
 
-      <TimerDisplay sessionType={sessionType} timeLeft={timeLeft} />
+      <TimerDisplay
+        sessionType={sessionType}
+        timeLeft={timeLeft}
+        sessionDuration={config[sessionType]}
+      />
 
       <Controls
         isRunning={isRunning}
