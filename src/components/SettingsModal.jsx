@@ -35,13 +35,17 @@ export default function SettingsModal({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.3 }}
-          className="bg-white rounded-xl p-6 w-full max-w-md mx-4 sm:mx-0 shadow-xl"
+          className="bg-white rounded-xl p-6 w-full max-w-md mx-auto shadow-2xl space-y-4"
         >
-          <h2 className="text-xl font-semibold mb-4">Settings</h2>
+          <h3 className="text-xl font-semibold text-gray-800 border-b pb-2">
+            Timer Settings
+          </h3>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="workDuration" className="block font-medium">
-                Work Duration (minutes)
+              <label htmlFor="workDuration" className="flex flex-col gap-1">
+                <span className="text-sm text-gray-600">
+                  Work Duration (minutes)
+                </span>
               </label>
               <input
                 id="workDuration"
@@ -49,14 +53,19 @@ export default function SettingsModal({
                 min="1"
                 value={work}
                 onChange={(e) => setWork(Number(e.target.value))}
-                className="w-full border p-2 rounded"
+                className="border rounded-md px-3 py-2 text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-300"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="shortBreakDuration" className="block font-medium">
-                Short Break Duration (minutes)
+              <label
+                htmlFor="shortBreakDuration"
+                className="flex flex-col gap-1"
+              >
+                <span className="text-sm text-gray-600">
+                  Short Break Duration (minutes)
+                </span>
               </label>
               <input
                 id="shortBreakDuration"
@@ -64,14 +73,19 @@ export default function SettingsModal({
                 min="1"
                 value={shortBreak}
                 onChange={(e) => setShortBreak(Number(e.target.value))}
-                className="w-full border p-2 rounded"
+                className="border rounded-md px-3 py-2 text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-300"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="longBreakDuration" className="block font-medium">
-                Long Break Duration (minutes)
+              <label
+                htmlFor="longBreakDuration"
+                className="flex flex-col gap-1"
+              >
+                <span className="text-sm text-gray-600">
+                  Long Break Duration (minutes)
+                </span>
               </label>
               <input
                 id="longBreakDuration"
@@ -79,14 +93,16 @@ export default function SettingsModal({
                 min="1"
                 value={longBreak}
                 onChange={(e) => setLongBreak(Number(e.target.value))}
-                className="w-full border p-2 rounded"
+                className="border rounded-md px-3 py-2 text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-300"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="sessions" className="block font-medium">
-                Sessions Before Long Break
+              <label htmlFor="sessions" className="flex flex-col gap-1">
+                <span className="text-sm text-gray-600">
+                  Sessions Before Long Break
+                </span>
               </label>
               <input
                 id="sessions"
@@ -96,22 +112,22 @@ export default function SettingsModal({
                 onChange={(e) =>
                   setSessionsBeforeLongBreak(Number(e.target.value))
                 }
-                className="w-full border p-2 rounded"
+                className="border rounded-md px-3 py-2 text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-300"
                 required
               />
             </div>
 
-            <div className="flex justify-end gap-2 mt-4">
+            <div className="flex justify-end gap-3 pt-2 border-t">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                className="px-4 py-2 rounded-md bg-gray-100 text-sm hover:bg-gray-200"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-4 py-2 rounded-md bg-blue-500 text-white text-sm hover:bg-blue-600"
               >
                 Save
               </button>

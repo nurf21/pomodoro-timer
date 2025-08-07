@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function TimerDisplay({ sessionType, timeLeft }) {
   // Format seconds into MM:SS
@@ -30,7 +30,7 @@ export default function TimerDisplay({ sessionType, timeLeft }) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="text-lg font-medium text-gray-600"
+        className="text-lg font-medium text-gray-600 tracking-wid"
         aria-live="polite"
       >
         {getSessionLabel(sessionType)}

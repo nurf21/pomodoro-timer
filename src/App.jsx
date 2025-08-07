@@ -38,7 +38,7 @@ function App() {
   return (
     <main
       role="main"
-      className="min-h-screen flex flex-col items-center justify-center px-4 py-8 sm:px-6 lg:px-8"
+      className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-8 sm:px-6 lg:px-8 text-gray-900"
     >
       <audio
         ref={audioRef}

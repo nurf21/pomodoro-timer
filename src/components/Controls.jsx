@@ -1,12 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function Controls({
-  isRunning,
-  onStart,
-  onPause,
-  onReset,
-  isDisabled,
-}) {
+export default function Controls({ isRunning, onStart, onPause, onReset }) {
   return (
     <motion.div
       className="flex flex-col sm:flex-row gap-4 justify-center mt-6 w-full max-w-sm"
@@ -17,23 +11,22 @@ export default function Controls({
       {isRunning ? (
         <button
           onClick={onPause}
-          className="flex-1 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+          className="flex-1 py-3 px-4 rounded-xl bg-yellow-400 text-white text-base font-semibold shadow hover:bg-yellow-500 transition"
         >
           Pause
         </button>
       ) : (
         <button
           onClick={onStart}
-          className="flex-1 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-          disabled={isDisabled}
+          className="flex-1 py-3 px-4 rounded-xl bg-green-500 text-white text-base font-semibold shadow hover:bg-green-600 transition"
         >
-          {isDisabled ? "Start" : "Start"}
+          Start
         </button>
       )}
 
       <button
         onClick={onReset}
-        className="flex-1 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+        className="flex-1 py-3 px-4 rounded-xl bg-gray-400 text-white text-base font-semibold shadow hover:bg-gray-500 transition"
       >
         Reset
       </button>
