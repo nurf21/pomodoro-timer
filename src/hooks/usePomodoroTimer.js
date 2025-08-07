@@ -1,12 +1,36 @@
 import { useState, useEffect, useRef } from "react";
+import { saveState, loadState } from "../utils/storage";
 
-export function usePomodoroTimer(config) {
-  const [timeLeft, setTimeLeft] = useState(config.work);
+export function usePomodoroTimer() {
+  const stored = loadState();
+  const [config, setConfig] = useState(
+    stored?.config || {
+      work: 25 * 60,
+      shortBreak: 5 * 60,
+      longBreak: 15 * 60,
+      sessionsBeforeLongBreak: 4,
+    }
+  );
+
+  const [timeLeft, setTimeLeft] = useState(() => {
+    if (stored?.timeLeft && stored?.sessionType && stored?.config) {
+      return stored.timeLeft;
+    }
+    return stored?.config?.work || 25 * 60;
+  });
+
   const [isRunning, setIsRunning] = useState(false);
-  const [sessionType, setSessionType] = useState("work"); // 'work' | 'shortBreak' | 'longBreak'
-  const [completedSessions, setCompletedSessions] = useState(0);
+
+  const [sessionType, setSessionType] = useState(
+    () => stored?.sessionType || "work"
+  ); // 'work' | 'shortBreak' | 'longBreak'
+
+  const [completedSessions, setCompletedSessions] = useState(
+    () => stored?.completedSessions || 0
+  );
 
   const intervalRef = useRef(null);
+  const hasMounted = useRef(false);
 
   const start = () => setIsRunning(true);
   const pause = () => setIsRunning(false);
@@ -55,14 +79,29 @@ export function usePomodoroTimer(config) {
 
   // 🔁 Watch for config changes and reset
   useEffect(() => {
-    reset();
+    if (hasMounted.current) {
+      reset();
+    } else {
+      hasMounted.current = true;
+    }
   }, [config]);
 
+  useEffect(() => {
+    saveState({
+      config,
+      sessionType,
+      timeLeft,
+      completedSessions,
+    });
+  }, [config, sessionType, timeLeft, completedSessions]);
+
   return {
+    config,
     timeLeft,
     isRunning,
     sessionType,
     completedSessions,
+    setConfig,
     start,
     pause,
     reset,

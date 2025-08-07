@@ -6,25 +6,20 @@ import SettingsModal from "./components/SettingsModal";
 import TimerDisplay from "./components/TimerDisplay";
 
 function App() {
-  const [config, setConfig] = useState({
-    work: 25 * 60,
-    shortBreak: 5 * 60,
-    longBreak: 15 * 60,
-    sessionsBeforeLongBreak: 4,
-  });
-
   const audioRef = useRef(null);
 
   const {
+    config,
     sessionType,
     timeLeft,
     isRunning,
     completedSessions,
+    setConfig,
     start,
     pause,
     reset,
     skipSession,
-  } = usePomodoroTimer(config);
+  } = usePomodoroTimer();
 
   useEffect(() => {
     if (timeLeft === 0 && audioRef.current) {
