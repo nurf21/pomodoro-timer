@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function TimerDisplay({ sessionType, timeLeft }) {
   // Format seconds into MM:SS
   const formatTime = (seconds) => {
@@ -22,9 +24,17 @@ export default function TimerDisplay({ sessionType, timeLeft }) {
 
   return (
     <div className="text-center space-y-2">
-      <h2 className="text-lg font-medium text-gray-600" aria-live="polite">
+      <motion.h2
+        key={sessionType}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="text-lg font-medium text-gray-600"
+        aria-live="polite"
+      >
         {getSessionLabel(sessionType)}
-      </h2>
+      </motion.h2>
 
       <div
         className="font-timer font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl"

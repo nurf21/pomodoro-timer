@@ -1,4 +1,4 @@
-import React from "react";
+import { motion } from "framer-motion";
 
 export default function Controls({
   isRunning,
@@ -8,7 +8,12 @@ export default function Controls({
   isDisabled,
 }) {
   return (
-    <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 w-full max-w-sm">
+    <motion.div
+      className="flex flex-col sm:flex-row gap-4 justify-center mt-6 w-full max-w-sm"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       {isRunning ? (
         <button
           onClick={onPause}
@@ -32,6 +37,6 @@ export default function Controls({
       >
         Reset
       </button>
-    </div>
+    </motion.div>
   );
 }
