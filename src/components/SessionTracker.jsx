@@ -10,7 +10,9 @@ export default function SessionTracker({
       <span
         key={i}
         className={`w-4 h-4 rounded-full inline-block mx-1 ${
-          isCompleted ? "bg-green-600" : "bg-gray-300"
+          isCompleted
+            ? "bg-green-500 dark:bg-green-400"
+            : "bg-gray-300 dark:bg-gray-600"
         }`}
         aria-label={isCompleted ? "Completed" : "Incomplete"}
       ></span>
@@ -19,7 +21,9 @@ export default function SessionTracker({
 
   return (
     <div className="mt-4 text-center">
-      <p className="text-sm text-gray-600">Pomodoro Progress</p>
+      <p className="text-sm text-gray-600 dark:text-gray-200">
+        Pomodoro Progress
+      </p>
       <div
         className="flex justify-center items-center mt-1"
         role="list"
@@ -42,7 +46,7 @@ export default function SessionTracker({
           </span>
         ))}
       </div>
-      <p className="text-xs text-gray-500 mt-1">
+      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
         {completedSessions % sessionsBeforeLongBreak}/{sessionsBeforeLongBreak}{" "}
         before long break
       </p>
