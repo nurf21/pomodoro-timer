@@ -28,22 +28,22 @@ export default function SettingsModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.3 }}
-          className="bg-white rounded-xl p-6 w-full max-w-md mx-auto shadow-2xl space-y-4"
+          className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-sm shadow-lg transition-colors"
         >
-          <h3 className="text-xl font-semibold text-gray-800 border-b pb-2">
-            Timer Settings
-          </h3>
+          <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+            Settings
+          </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="workDuration" className="flex flex-col gap-1">
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-600 dark:text-gray-300">
                   Work Duration (minutes)
                 </span>
               </label>
@@ -63,7 +63,7 @@ export default function SettingsModal({
                 htmlFor="shortBreakDuration"
                 className="flex flex-col gap-1"
               >
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-600 dark:text-gray-300">
                   Short Break Duration (minutes)
                 </span>
               </label>
@@ -83,7 +83,7 @@ export default function SettingsModal({
                 htmlFor="longBreakDuration"
                 className="flex flex-col gap-1"
               >
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-600 dark:text-gray-300">
                   Long Break Duration (minutes)
                 </span>
               </label>
@@ -100,7 +100,7 @@ export default function SettingsModal({
 
             <div>
               <label htmlFor="sessions" className="flex flex-col gap-1">
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-600 dark:text-gray-300">
                   Sessions Before Long Break
                 </span>
               </label>
@@ -121,13 +121,13 @@ export default function SettingsModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-md bg-gray-100 text-sm hover:bg-gray-200"
+                className="mt-4 px-4 py-2 bg-gray-300 dark:bg-gray-700 text-black dark:text-white rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 rounded-md bg-blue-500 text-white text-sm hover:bg-blue-600"
+                className="mt-4 px-4 py-2 rounded-md bg-blue-500 text-white text-sm hover:bg-blue-600"
               >
                 Save
               </button>

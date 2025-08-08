@@ -36,7 +36,7 @@ export default function TimerDisplay({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        className="text-lg font-medium text-gray-600 tracking-wid"
+        className="text-lg font-semibold capitalize mb-2 text-gray-700 dark:text-gray-300"
         aria-live="polite"
       >
         {getSessionLabel(sessionType)}

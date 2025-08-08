@@ -34,7 +34,7 @@ function App() {
   return (
     <main
       role="main"
-      className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-8 sm:px-6 lg:px-8 text-gray-900"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col items-center justify-center px-4 py-8 sm:px-6 lg:px-8 text-gray-900 dark:text-gray-100 transition-colors duration-300"
     >
       <audio
         ref={audioRef}
@@ -44,7 +44,7 @@ function App() {
 
       <button
         onClick={() => setShowSettings(true)}
-        className="absolute top-4 right-4 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+        className="absolute top-4 right-4 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 dark:text-black"
       >
         ⚙️ Settings
       </button>
